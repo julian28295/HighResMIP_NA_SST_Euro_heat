@@ -12,4 +12,11 @@ The repository includes five Jupyter Notebooks:
 
 * 5) HadISST_AMV.ipynb - This notebook calculates the AMV based on the HadISST data set. The results are used for Fig. 5.
 
-* 6) HighResMIP_bootstrap_map_composites_SST_T2m.py  - HighResMIP_bootstrap_map_composites_Z300.py - HighResMIP_bootstrap_map_composites_SLHF.py - These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the three variables SST&T2m, Z300, SLHF shown in Fig. 3 and Fig. S4. 
+
+Further, the respository contains three python scripts:
+
+* 1) HighResMIP_bootstrap_map_composites_SST_T2m.py  
+* 2) HighResMIP_bootstrap_map_composites_Z300.py
+* 3) HighResMIP_bootstrap_map_composites_SLHF.py
+
+These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the three variables SST&T2m, Z300, SLHF shown in Fig. 3 and Fig. S4.
