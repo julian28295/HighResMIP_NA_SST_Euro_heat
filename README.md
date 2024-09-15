@@ -8,15 +8,14 @@ The repository includes five Jupyter Notebooks:
 
 * 3) *HighResMIP_ERA5_AMV.ipynb* - This notebook includes the calculation of the AMV of the HighResMIP models and their relationship to the composites of the European T2m anomalies. Results are shown in Fig. 5 and Fig. S7, S8.
 
-* 4) *HighResMIP_bootstrap_composites.ipynb* - This notebook contains the bootstrap analysis used for the significance of Fig. 4c,d.
-
-* 5) *HadISST_AMV.ipynb* - This notebook calculates the AMV based on the HadISST data set. The results are used for Fig. 5.
+* 4) *HadISST_AMV.ipynb* - This notebook calculates the AMV based on the HadISST data set. The results are used for Fig. 5.
 
 
-Further, the respository contains three python scripts:
+Further, the respository contains four python scripts:
 
 * 1) *HighResMIP_bootstrap_map_composites_SST_T2m.py*  
 * 2) *HighResMIP_bootstrap_map_composites_Z300.py*
 * 3) *HighResMIP_bootstrap_map_composites_SLHF.py*
+* 4) *HighResMIP_bootstrap_map_composites_pr.py*
 
-These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the three variables SST&T2m, Z300, SLHF shown in Fig. 3 and Fig. S4.
+These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the four variables SST&T2m, Z300, SLHF, pr shown in Fig. 3, Fig. 4c,d and Fig. S4.
