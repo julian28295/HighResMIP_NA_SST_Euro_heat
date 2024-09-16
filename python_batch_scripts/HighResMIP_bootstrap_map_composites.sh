@@ -11,8 +11,8 @@
 #SBATCH --constraint="512G|1024G"
 #SBATCH --mem=0
 
-# Lade die benötigten Module, z.B. Python (anpassen, falls nötig)
+# Load modules
 module load python3
 which python
-# Führe das Python-Skript aus
+# Execute python script
 python HighResMIP_bootstrap_map_composites_pr.py
