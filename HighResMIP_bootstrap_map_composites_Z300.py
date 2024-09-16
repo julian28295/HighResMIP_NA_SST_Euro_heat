@@ -1,1 +1,0 @@
-/home/m/m301111/python_sbatch_scripts/HighResMIP_bootstrap_map_composites_Z300.py
