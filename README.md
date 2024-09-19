@@ -18,4 +18,4 @@ Further, the respository contains four python scripts:
 * 3) *HighResMIP_bootstrap_map_composites_SLHF.py*
 * 4) *HighResMIP_bootstrap_map_composites_pr.py*
 
-These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the four variables SST&T2m, Z300, SLHF, pr shown in Fig. 3, Fig. 4c,d and Fig. S4.
+These python scripts are used for the bootstrap analysis used for the significance of the map anomalies of the four variables SST&T2m, Z300, SLHF, precipitation shown in Fig. 3, Fig. 4c,d and Fig. S4, S5, S6.
