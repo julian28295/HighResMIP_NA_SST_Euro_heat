@@ -27,9 +27,9 @@ import warnings
 start = time.time()
 # Set model, variables, resolutions
 model_name =['ERA5_','HadGEM3-GC31_','CNRM-CM6_','EC-Earth3P_','ECMWF-IFS_','CMCC-CM2_', 'MPI-ESM1-2_','FOCI_']
-ERA5_variable = ['sea_surface_temperature','t2m','z300','precipitation_total','surface_latent_heat_flux']
-FOCI_variable = ['tsw_', 'temp2_','geopoth_pl_300hPa_','precip_','ahfl_']
-variable = ['tos_', 'tas_','zg_','pr_','hfls_']
+ERA5_variable = ['sea_surface_temperature','t2m','z300','precipitation_total','surface_latent_heat_flux','EGR']
+FOCI_variable = ['tsw_',  'temp2_', 'geopoth_pl_300hPa_', 'precip_', 'ahfl_','EGR_']
+variable = ['tos_', 'tas_', 'zg_','pr_','hfls_', 'EGR_']
 resolution = [[''],
               ['-LL', '-MM', '-HH'],
               ['-1' , '-1-HR'],
@@ -39,20 +39,28 @@ resolution = [[''],
               ['-HR', '-XR','-ER', '-HR-PP'],
               ['-Standard' ,'-VIKING10']]
 
-var_name = [['var34', 'var167','z','var228','var147'],['tos', 'tas','zg23','pr','hfls'],['tos', 'tas','zg10','pr','hfls'] ,['tos', 'tas','zg','pr','hfls'] ,['tos', 'tas','zg','pr','hfls'] ,['tos', 'tas','zg','pr','hfls'],['tos', 'tas','zg','pr','hfls'],['tsw', 'temp2','geopoth','precip','ahfl']]# 'slp_','precip_', 'ahfl_', 'ahfs_']
-unit_factor= [[1,1, (1/9.81), (1000*24), (-1)], # ERA5
-              [1,1, 1,        (3600*24), (-1)],     # HadGEM
-              [1,1, 1,        (3600*24), (-1)],     # CNRM
-              [1,1, 1,        (3600*24), (-1)],     # EC-Earth
-              [1,1, 1,        (3600*24), (-1)],     # ECMWF-IFS
-              [1,1, 1,        (3600*24), (-1)],     # CMCC
-              [1,1, 1,        (3600*24), (-1)],     # MPI-ESM
-              [1,1, 1,        (3600*24), (-1)],     # FOCI
-              ]
+var_name = [['var34', 'var167','z','var228','var147','EGR'],
+            ['tos', 'tas','zg23','pr','hfls','EGR'],
+            ['tos', 'tas','zg10','pr','hfls','EGR'] ,
+            ['tos', 'tas','zg','pr','hfls','EGR'] ,
+            ['tos', 'tas','zg','pr','hfls','EGR'] ,
+            ['tos', 'tas','zg','pr','hfls','EGR'],
+            ['tos', 'tas','zg','pr','hfls','EGR'],
+            ['tsw', 'temp2','geopoth','precip','ahfl','EGR']]# 'slp_','precip_', 'ahfl_', 'ahfs_']
+
+unit_factor= [[1,1, (1/9.81), (1000*24), (-1), 1], # ERA5
+              [1,1, 1,        (3600*24), (-1), 1],     # HadGEM
+              [1,1, 1,        (3600*24), (-1), 1],     # CNRM
+              [1,1, 1,        (3600*24), (-1), 1],     # EC-Earth
+              [1,1, 1,        (3600*24), (-1), 1],     # ECMWF-IFS
+              [1,1, 1,        (3600*24), (-1), 1],     # CMCC
+              [1,1, 1,        (3600*24), (-1), 1],     # MPI-ESM
+              [1,1, 1,        (3600*24), (-1), 1],]        # FOCI
+
 HighRes_model={}
 for mod in range(len(model_name)):
     print(model_name[mod])
-    for var in [0,3]:
+    for var in [0,5]:
             for res in range(len(resolution[mod])):
                 if mod==0:
                     #Input of ERA5
@@ -146,13 +154,13 @@ for mod in range(len(model_name)):
     HighRes_model_detrend = {}
     HighRes_model_dt_ds = {}
     HighRes_model_dt_ds_anom = {}
-    for var in [3]:
+    for var in [5]:
         print(variable[var][:-1])
         for res in range(len(resolution[mod])):
             if var==0:
                 HighRes_model_null[model_name[mod]+variable[var]+resolution[mod][res]+'_null'] = HighRes_model[model_name[mod]+variable[var]+resolution[mod][res]][var_name [mod][var]].fillna(HighRes_model[model_name[mod]+variable[1]+resolution[mod][res]][var_name [mod][1]])
             else:
-                HighRes_model_null[model_name[mod]+variable[var]+resolution[mod][res]+'_null'] = HighRes_model[model_name[mod]+variable[var]+resolution[mod][res]]*unit_factor[mod][var][var_name [mod][var]]
+                HighRes_model_null[model_name[mod]+variable[var]+resolution[mod][res]+'_null'] = (HighRes_model[model_name[mod]+variable[var]+resolution[mod][res]][var_name [mod][var]]*unit_factor[mod][var]).where(~np.isinf((HighRes_model[model_name[mod]+variable[var]+resolution[mod][res]][var_name [mod][var]]*unit_factor[mod][var])), np.nan).squeeze().fillna(0)
 
         # 6 Bootstrap method
             sample_num= 1000
@@ -197,6 +205,6 @@ for mod in range(len(model_name)):
 boots_mean_quant_025_map_lag0_ds = xr.Dataset(boots_mean_quant_025_map_lag0)
 boots_mean_quant_975_map_lag0_ds = xr.Dataset(boots_mean_quant_975_map_lag0)
 
-boots_mean_quant_025_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_025_map_lag0_pr_unit.nc')
-boots_mean_quant_975_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_975_map_lag0_pr_unit.nc')
+boots_mean_quant_025_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/HighResMIP_composite_bootstrapping_quantiles/boots_mean_quant_025_map_lag0_egr.nc')
+boots_mean_quant_975_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/HighResMIP_composite_bootstrapping_quantiles/boots_mean_quant_975_map_lag0_egr.nc')
 print('NetCDF Files of pr bootstrapping composites successfully saved')

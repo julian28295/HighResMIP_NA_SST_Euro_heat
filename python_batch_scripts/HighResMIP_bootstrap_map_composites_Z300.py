@@ -86,7 +86,7 @@ def bootstrap_composites_map (var, sst_ds_Atl_dt_JJA, sample_num, sample_length,
     # Obtain a single sample with length "sample_length"
     sample = sst_ds_Atl_dt_JJA.sel(time=np.random.choice(sst_ds_Atl_dt_JJA.time, size=sample_length, replace=False))
     # Select data of randomly chosen time points
-    var_boot_sample = var.where(var.time == ((sample.time + pd.Timedelta("5 days")).assign_coords(time=sample.time + pd.Timedelta("5 days"))))
+    var_boot_sample = var.where(var.time == ((sample.time).assign_coords(time=sample.time)))
     # Compute sample mean over dim "time" with length "sample_length"
     boot_mean = var_boot_sample.mean('time')
     # Assign number to the sample mean
@@ -191,6 +191,6 @@ for mod in range(len(model_name)):
 boots_mean_quant_025_map_lag0_ds = xr.Dataset(boots_mean_quant_025_map_lag0)
 boots_mean_quant_975_map_lag0_ds = xr.Dataset(boots_mean_quant_975_map_lag0)
 
-boots_mean_quant_025_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_025_map_lag5_z300.nc')
-boots_mean_quant_975_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_975_map_lag5_z300.nc')
+boots_mean_quant_025_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_025_map_lag0_z300.nc')
+boots_mean_quant_975_map_lag0_ds.to_netcdf('/work/bm1398/m301111/Models/HighResMIP/boots_mean_quant_975_map_lag0_z300.nc')
 print('NetCDF Files of Z300 bootstrapping composites successfully saved')

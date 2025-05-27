@@ -15,4 +15,4 @@
 module load python3
 which python
 # Execute python script
-python HighResMIP_bootstrap_map_composites_pr.py
+python HighResMIP_bootstrap_map_composites_egr.py
