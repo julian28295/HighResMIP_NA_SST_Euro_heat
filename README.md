@@ -29,6 +29,7 @@ These python scripts are used for the bootstrap analysis used for the significan
 
 
 -------------------------------------------------
+### OLD DATA FOR INITIAL SUBMISSION ###
 
 This repository includes Jupyter notebooks & Python scripts for the analysis of HighResMIP models. Model composites of cold North Atlantic SSTs are examined, which are compared to the ERA5 reanalysis product used as reference. The composite analysis is based on the study by Krüger et al. (2023). https://a.tellusjournals.se/articles/10.16993/tellusa.3235  
 
