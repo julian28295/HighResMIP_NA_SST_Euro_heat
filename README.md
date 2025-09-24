@@ -4,7 +4,7 @@ This repository includes Jupyter notebooks & Python scripts for the analysis of 
 
 The repository includes three Jupyter Notebooks:
 
-* 1) *HighResMIP_North_Atlantic_biases.ipynb* - This notebook calculates the North Atlantic biases of SST and SLHF and absolute bias differences. Significance is calculated based on a sample T-test. The results are shown in Fig. 1,2 and Fig. S1,S2.
+* 1) *HighResMIP_North_Atlantic_biases.ipynb* - This notebook calculates the North Atlantic biases of SST and SLHF and absolute bias differences. Significance is calculated based on a sample T-test. The results are shown in Fig. 1,2 and Fig. S2, S3.
 
 * 2) *SLHF_ERA5_OA_Flux_diff.ipynb* - Systematic differences of surface latent heat flux based on data sets from ERA5 reanalysis and OA Flux. Systematic differences for each season are now shown in Fig. S1.
 
